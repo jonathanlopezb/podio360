@@ -7,13 +7,13 @@ import { cn } from "@/lib/utils"
 
 export function Topbar() {
     return (
-        <header className="h-20 flex items-center justify-between px-8 sticky top-0 z-40 ml-64 w-[calc(100%-16rem)] bg-[#050505]/60 backdrop-blur-xl border-b border-white/5">
-            <div className="flex items-center gap-10">
+        <header className="h-20 flex items-center justify-between px-4 lg:px-8 sticky top-0 z-40 bg-[#050505]/60 backdrop-blur-xl border-b border-white/5 w-full">
+            <div className="flex items-center gap-4 lg:gap-10">
                 <div className="flex items-center gap-3">
                     <div className="w-5 h-5 rounded bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
                         <Trophy className="w-3 h-3 text-emerald-500" />
                     </div>
-                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Dashboard AI de Deportes</span>
+                    <span className="text-[9px] lg:text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] hidden sm:block">Dashboard AI de Deportes</span>
                 </div>
 
                 <nav className="hidden xl:flex items-center gap-8">
@@ -28,32 +28,40 @@ export function Topbar() {
                 </nav>
             </div>
 
-            <div className="flex items-center gap-4">
-                <div className="flex items-center bg-white/5 rounded-full border border-white/5 px-4 h-10 group focus-within:border-emerald-500/30 transition-all">
-                    <Search className="w-4 h-4 text-gray-500 transition-colors group-focus-within:text-emerald-500" />
+            <div className="flex items-center gap-2 lg:gap-4">
+                {/* Search Bar - Responsive */}
+                <div className="flex items-center bg-white/5 rounded-full border border-white/5 px-4 h-10 group focus-within:border-emerald-500/30 transition-all sm:w-auto w-10 overflow-hidden sm:overflow-visible">
+                    <Search className="w-4 h-4 text-gray-500 shrink-0 transition-colors group-focus-within:text-emerald-500" />
                     <input
-                        className="bg-transparent border-none focus:ring-0 text-xs py-2 px-3 text-white w-40 xl:w-60 placeholder:text-gray-600 font-bold uppercase tracking-wider"
+                        className="bg-transparent border-none focus:ring-0 text-xs py-2 px-3 text-white w-40 xl:w-60 placeholder:text-gray-600 font-bold uppercase tracking-wider hidden sm:block"
                         placeholder="Buscar señales..."
                     />
                 </div>
 
-                <div className="flex items-center gap-1.5">
-                    <UtilityButton icon={Search} />
-                    <UtilityButton icon={Share2} />
-                    <UtilityButton icon={LayoutGrid} />
-                    <UtilityButton icon={Lock} />
-                    <UtilityButton icon={RefreshCw} />
+                {/* Utility Icon Buttons */}
+                <div className="flex items-center gap-1 lg:gap-1.5">
+                    <div className="hidden md:flex items-center gap-1.5">
+                        <UtilityButton icon={Share2} />
+                        <UtilityButton icon={LayoutGrid} />
+                        <UtilityButton icon={Lock} />
+                        <UtilityButton icon={RefreshCw} />
+                    </div>
 
-                    <div className="h-6 w-[1px] bg-white/10 mx-2" />
+                    <div className="h-6 w-[1px] bg-white/10 mx-1 md:mx-2" />
 
                     <motion.div
                         whileHover={{ scale: 1.05 }}
-                        className="flex items-center gap-3 pl-2 cursor-pointer group"
+                        className="flex items-center gap-3 pl-1 lg:pl-2 cursor-pointer group"
                     >
                         <div className="w-10 h-10 rounded-xl border border-emerald-500/30 p-0.5 overflow-hidden group-hover:border-emerald-500 shadow-lg transition-all">
                             <div className="w-full h-full bg-emerald-500/10 flex items-center justify-center rounded-lg">
                                 <User className="w-6 h-6 text-emerald-500" />
                             </div>
+                        </div>
+                        {/* User Info - Hidden on mobile */}
+                        <div className="hidden lg:flex flex-col text-left">
+                            <span className="text-[10px] font-black text-white uppercase tracking-tighter leading-none">Admin User</span>
+                            <span className="text-[8px] font-bold text-emerald-500 uppercase tracking-widest mt-0.5">Pro Plate</span>
                         </div>
                     </motion.div>
                 </div>
@@ -80,8 +88,8 @@ function TopNavSelector({ label, value, highlight = "text-white", icon }: { labe
 
 function UtilityButton({ icon: Icon }: { icon: any }) {
     return (
-        <Button variant="ghost" size="icon" className="w-10 h-10 text-gray-500 hover:text-white hover:bg-white/5 rounded-xl border border-transparent hover:border-white/5 transition-all">
-            <Icon className="w-4.5 h-4.5" />
+        <Button variant="ghost" size="icon" className="w-9 h-9 lg:w-10 lg:h-10 text-gray-500 hover:text-white hover:bg-white/5 rounded-xl border border-transparent hover:border-white/5 transition-all">
+            <Icon className="w-4 h-4 lg:w-4.5 lg:h-4.5" />
         </Button>
     )
 }
