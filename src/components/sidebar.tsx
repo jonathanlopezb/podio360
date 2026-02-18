@@ -16,7 +16,8 @@ import {
     ChevronRight,
     Monitor,
     Menu,
-    X
+    X,
+    Circle
 } from "lucide-react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
@@ -76,10 +77,12 @@ export function Sidebar() {
                     {isCollapsed ? <ChevronRight size={14} /> : <ChevronLeft size={14} />}
                 </button>
 
-                {/* Logo Area */}
+                {/* Logo Area - Refined Tennis Ball */}
                 <div className={cn("px-6 mb-12 flex items-center gap-3 transition-all", isCollapsed ? "justify-center px-0" : "")}>
-                    <div className="w-10 h-10 shrink-0 bg-emerald-500/10 rounded-full flex items-center justify-center border border-emerald-500/20 neon-glow-emerald">
-                        <Trophy className="text-emerald-500 w-6 h-6" />
+                    <div className="w-10 h-10 shrink-0 bg-emerald-500 rounded-full flex items-center justify-center border-2 border-white/20 relative shadow-[0_0_20px_rgba(16,185,129,0.5)] overflow-hidden group">
+                        <div className="absolute inset-0 border-[3px] border-white/10 rounded-full scale-90 translate-x-3 translate-y-3" />
+                        <div className="absolute inset-0 border-[3px] border-white/10 rounded-full scale-90 -translate-x-3 -translate-y-3" />
+                        <Circle className="text-black/80 w-6 h-6 fill-black/10" />
                     </div>
                     {!isCollapsed && (
                         <motion.div
@@ -151,9 +154,9 @@ export function Sidebar() {
                             <ControlToggle label="LED Signos" icon={Zap} defaultChecked />
                         </motion.div>
                     ) : (
-                        <div className="flex flex-col items-center gap-4">
-                            <Settings className="w-4 h-4 text-gray-500" />
-                            <Zap className="w-4 h-4 text-emerald-500" />
+                        <div className="flex flex-col items-center gap-4 text-gray-500">
+                            <Settings className="w-4 h-4 hover:text-white transition-colors cursor-pointer" />
+                            <Zap className="w-4 h-4 text-emerald-500 cursor-pointer" />
                         </div>
                     )}
 

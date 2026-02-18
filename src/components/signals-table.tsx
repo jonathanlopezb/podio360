@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { MoreHorizontal, Search, Trophy, User, ChevronRight, LayoutGrid, Filter } from "lucide-react"
+import { MoreHorizontal, Search, Trophy, User, ChevronRight, LayoutGrid, Filter, ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const signals = [
@@ -21,7 +21,7 @@ export function SignalsTable() {
                 <div className="flex items-center gap-8">
                     <h2 className="text-sm font-black uppercase tracking-[0.2em] text-white">Señales Activas High Edge</h2>
                     <div className="flex items-center gap-1 bg-black/40 p-1.5 rounded-xl border border-white/5 shadow-inner">
-                        <button className="px-5 py-1.5 text-[10px] font-black uppercase bg-emerald-500 text-black rounded-lg shadow-lg shadow-emerald-500/20 transition-all">Tenis</button>
+                        <button className="px-5 py-1.5 text-[10px] font-black uppercase bg-emerald-500 text-black rounded-lg shadow-[0_0_15px_rgba(16,185,129,0.5)] transition-all">Tenis</button>
                         <button className="px-5 py-1.5 text-[10px] font-black uppercase text-gray-500 hover:text-gray-300 transition-colors">Baloncesto</button>
                         <button className="px-5 py-1.5 text-[10px] font-black uppercase text-gray-500 hover:text-gray-300 transition-colors flex items-center gap-2">
                             Fútbol <ChevronRight className="w-3 h-3" />
@@ -66,14 +66,16 @@ export function SignalsTable() {
                                 transition={{ delay: idx * 0.05, duration: 0.5 }}
                                 className={cn(
                                     "hover:bg-white/[0.04] transition-all duration-300 group cursor-pointer relative",
-                                    signal.active && "bg-emerald-500/[0.08] neon-border-emerald z-10 scale-[1.01] shadow-2xl"
+                                    signal.active && "bg-emerald-500/[0.12] z-10 scale-[1.01] shadow-[0_0_30px_rgba(16,185,129,0.15)] ring-1 ring-emerald-500/30"
                                 )}
                             >
                                 <td className="px-8 py-6">
                                     <div className="flex items-center gap-5">
-                                        <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center bg-white/5 relative overflow-hidden group-hover:border-emerald-500/30 transition-colors shadow-lg">
-                                            <User className="w-8 h-8 text-gray-500 group-hover:text-emerald-500 transition-colors" />
-                                            {signal.active && <div className="absolute inset-0 bg-emerald-500/10 shadow-[inner_0_0_15px_rgba(16,185,129,0.2)]" />}
+                                        <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center bg-emerald-900/20 relative overflow-hidden group-hover:border-emerald-500/30 transition-colors shadow-lg">
+                                            <User className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-500 transition-colors" />
+                                            {signal.active && (
+                                                <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/20 to-transparent" />
+                                            )}
                                         </div>
                                         <div>
                                             <p className="text-sm xl:text-base font-black text-white group-hover:text-emerald-400 transition-colors tracking-tight italic uppercase">{signal.match}</p>
@@ -115,7 +117,7 @@ export function SignalsTable() {
                                     <motion.button
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
-                                        className="px-6 py-2 rounded-xl border border-white/10 text-[10px] font-black uppercase text-gray-400 group-hover:text-white group-hover:border-emerald-500/50 group-hover:bg-emerald-500/10 transition-all shadow-lg"
+                                        className="px-6 py-2 rounded-xl border border-white/10 text-[10px] font-black uppercase text-gray-400 group-hover:text-white group-hover:border-emerald-500/50 group-hover:bg-emerald-500/10 transition-all shadow-lg shadow-black/50"
                                     >
                                         Detalles
                                     </motion.button>
@@ -127,7 +129,7 @@ export function SignalsTable() {
                 </table>
             </div>
 
-            <div className="p-6 border-t border-white/5 bg-white/[0.01] flex items-center justify-between">
+            <div className="p-6 border-t border-white/5 bg-white/[0.01] flex items-center justify-between mt-auto">
                 <span className="text-[10px] font-bold text-gray-600 uppercase tracking-[0.2em]">Desplegando 7 de 23 señales</span>
                 <div className="flex items-center gap-2">
                     <PaginationButton label="1" active />
@@ -153,5 +155,3 @@ function PaginationButton({ label, active, icon }: { label?: string, active?: bo
         </button>
     )
 }
-
-import { ChevronDown } from "lucide-react"
