@@ -1,11 +1,11 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { TrendingUp, User, Info, AlertTriangle, BarChart as ChartIcon } from "lucide-react"
+import { TrendingUp, User, AlertTriangle, Trophy, BarChart as ChartIcon } from "lucide-react"
 
 export function AnalysisPanel() {
     return (
-        <div className="w-96 flex flex-col gap-6">
+        <div className="w-96 flex flex-col gap-6 font-sans">
             <div className="podio-card p-6">
                 <h2 className="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-4">AI Confidence Index</h2>
                 <div className="flex items-baseline gap-2 mb-2">
@@ -85,5 +85,3 @@ export function AnalysisPanel() {
         </div>
     )
 }
-
-import { Trophy } from "lucide-react"

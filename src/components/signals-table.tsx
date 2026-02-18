@@ -1,7 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { MoreHorizontal, Search, Trophy, Terminal, User } from "lucide-react"
+import { MoreHorizontal, Search, Trophy, User } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 const signals = [
     { match: "Djkokovic vs Musetti", league: "BNL Rome Masters", odds: "1.42", stake: "$250", prob: "81%", logo: "🎾" },
@@ -108,5 +109,3 @@ export function SignalsTable() {
         </div>
     )
 }
-
-import { cn } from "@/lib/utils"

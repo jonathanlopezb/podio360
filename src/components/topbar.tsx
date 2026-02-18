@@ -1,6 +1,6 @@
 "use client"
 
-import { Search, Bell, Settings, ChevronDown, Share2, Wallet, ExternalLink, User } from "lucide-react"
+import { Search, Bell, Settings, ChevronDown, Share2, Wallet, ExternalLink, User, Trophy } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export function Topbar() {
@@ -55,14 +55,14 @@ export function Topbar() {
                         <div className="w-8 h-8 rounded-lg bg-white/10 border border-white/10 flex items-center justify-center cursor-pointer hover:border-emerald-500/50 transition-colors">
                             <User className="w-4 h-4 text-gray-400" />
                         </div>
-                        <User className="w-8 h-8 rounded-full border border-emerald-500/50 p-0.5" />
+                        <div className="w-8 h-8 rounded-full border border-emerald-500/50 p-0.5 overflow-hidden">
+                            <div className="w-full h-full bg-emerald-500/20 flex items-center justify-center">
+                                <User className="w-5 h-5 text-emerald-500" />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </header>
     )
 }
-
-// Fixed import for Trophy in Topbar
-import { Trophy as TrophyIcon } from "lucide-react"
-const Trophy = TrophyIcon
