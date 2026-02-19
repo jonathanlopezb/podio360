@@ -1,6 +1,6 @@
 "use client"
 
-import { Search, Bell, Settings, ChevronDown, Share2, LayoutGrid, Lock, RefreshCw, Zap, Trophy, User, Circle } from "lucide-react"
+import { Bell, Settings, ChevronDown, Share2, LayoutGrid, Lock, RefreshCw, Zap, Trophy, User, Circle, LogIn } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
@@ -28,16 +28,7 @@ export function Topbar() {
                 </nav>
             </div>
 
-            <div className="flex items-center gap-2 lg:gap-4">
-                {/* Search Bar */}
-                <div className="hidden md:flex items-center bg-white/5 rounded-xl border border-white/5 px-4 h-10 group focus-within:border-emerald-500/30 transition-all w-64 lg:w-80">
-                    <Search className="w-4 h-4 text-gray-600 shrink-0 transition-colors group-focus-within:text-emerald-500" />
-                    <input
-                        className="bg-transparent border-none focus:ring-0 text-[10px] py-2 px-3 text-white w-full placeholder:text-gray-700 font-bold uppercase tracking-[0.1em]"
-                        placeholder="BUSCAR SEÑALES AI..."
-                    />
-                </div>
-
+            <div className="flex items-center gap-3 lg:gap-6">
                 {/* Utility Icons */}
                 <div className="flex items-center gap-1.5 lg:gap-3">
                     <div className="hidden lg:flex items-center gap-1.5">
@@ -49,7 +40,7 @@ export function Topbar() {
 
                     <div className="h-6 w-[1px] bg-white/10 mx-1 lg:mx-2" />
 
-                    {/* Premium Profile Section */}
+                    {/* Premium Profile Section - login visible */}
                     <div className="flex items-center gap-4 pl-2 cursor-pointer group">
                         <div className="flex flex-col text-right hidden sm:flex">
                             <span className="text-[10px] font-black text-white uppercase tracking-tighter leading-none group-hover:text-emerald-400 transition-colors">
@@ -63,14 +54,20 @@ export function Topbar() {
 
                         <div className="relative">
                             <div className="w-11 h-11 rounded-2xl border-2 border-emerald-500/20 p-0.5 group-hover:border-emerald-500/60 transition-all shadow-[0_0_20px_rgba(16,185,129,0.1)]">
-                                <div className="w-full h-full bg-[#111] border border-white/5 rounded-[10px] flex items-center justify-center overflow-hidden">
-                                    <User className="w-7 h-7 text-emerald-500/50 group-hover:text-emerald-500 transition-all" />
+                                <div className="w-full h-full bg-emerald-500/10 border border-emerald-500/20 rounded-[10px] flex items-center justify-center overflow-hidden">
+                                    <User className="w-7 h-7 text-emerald-500 group-hover:scale-110 transition-transform" />
                                 </div>
                             </div>
                             {/* Online Badge */}
                             <div className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-[#050505] rounded-full flex items-center justify-center border-2 border-[#050505]">
-                                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
+                                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full shadow-[0_0_5px_rgba(16,185,129,1)]" />
                             </div>
+                        </div>
+
+                        {/* Persistent Login Indicator Button */}
+                        <div className="hidden md:flex items-center gap-2 bg-emerald-500 px-4 py-2 rounded-xl text-black font-black uppercase text-[9px] tracking-widest hover:bg-emerald-400 transition-all shadow-lg shadow-emerald-500/20">
+                            <LogIn className="w-3.5 h-3.5" />
+                            <span>Acceso</span>
                         </div>
                     </div>
                 </div>
