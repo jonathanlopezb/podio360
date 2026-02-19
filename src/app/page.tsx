@@ -7,6 +7,7 @@ import { SignalsTable } from "@/components/signals-table"
 import { AnalysisPanel } from "@/components/analysis-panel"
 import { motion } from "framer-motion"
 import { Megaphone, Map as MapIcon, ChevronRight, Truck, PlaneTakeoff, Clock } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 export default function Home() {
   return (
