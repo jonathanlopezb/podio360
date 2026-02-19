@@ -5,12 +5,12 @@ import { Topbar } from "@/components/topbar"
 import { KPICards } from "@/components/kpi-cards"
 import { SignalsTable } from "@/components/signals-table"
 import { AnalysisPanel } from "@/components/analysis-panel"
-import { motion, AnimatePresence } from "framer-motion"
-import { Megaphone, Map as MapIcon, ChevronRight } from "lucide-react"
+import { motion } from "framer-motion"
+import { Megaphone, Map as MapIcon, ChevronRight, Truck, PlaneTakeoff, Clock } from "lucide-react"
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#050505] flex selection:bg-emerald-500/30 overflow-x-hidden">
+    <main className="min-h-screen bg-[#050505] flex selection:bg-emerald-500/30 overflow-x-hidden text-[13px]">
       {/* Barra Lateral Izquierda */}
       <Sidebar />
 
@@ -19,162 +19,150 @@ export default function Home() {
         {/* Barra Superior */}
         <Topbar />
 
-        {/* Área de Contenido Principal - Layout Responsivo de 3 a 1 columna */}
-        <div className="p-4 lg:p-8 flex flex-col xl:flex-row gap-8 min-h-[calc(100vh-5rem)]">
+        {/* Área de Contenido Principal */}
+        <div className="p-4 lg:p-6 flex flex-col xl:flex-row gap-6 min-h-[calc(100vh-5rem)] max-w-[1920px] mx-auto w-full">
 
           {/* Dashboard Central */}
-          <div className="flex-1 min-w-0 space-y-8">
-            <header className="space-y-4">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex-1 min-w-0 space-y-6">
+            <header className="space-y-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
-                  <div className="w-1.5 h-6 lg:h-8 bg-emerald-500 rounded-full" />
-                  <h1 className="text-2xl lg:text-3xl font-black text-white uppercase tracking-tighter italic">Análisis de Tenis</h1>
+                  <div className="w-1 h-6 bg-emerald-500 rounded-full" />
+                  <h1 className="text-xl lg:text-2xl font-black text-white uppercase tracking-tighter italic">Análisis Pro Tenis</h1>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-black text-emerald-500 uppercase tracking-widest shadow-lg shadow-emerald-500/5">ATP Masters</div>
-                  <div className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-black text-gray-500 uppercase tracking-widest">Circuito Challenger</div>
+                  <div className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[9px] font-black text-emerald-500 uppercase tracking-widest shadow-lg shadow-emerald-500/5">ATP Masters</div>
+                  <div className="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-[9px] font-black text-gray-500 uppercase tracking-widest">Circuito Challenger</div>
                 </div>
               </div>
             </header>
 
             {/* Tarjetas de Métricas */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <KPICards />
-            </motion.div>
+            <KPICards />
 
-            {/* Tabla de Señales - Responsiva con Scroll Horizontal Controlado */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="min-w-0"
-            >
-              <SignalsTable />
-            </motion.div>
-
-            {/* Live Feed & News - Adaptativo */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="podio-card group"
-            >
-              <div className="p-6 border-b border-white/5 flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
-                    <Megaphone className="w-4 h-4 text-gray-500 group-hover:text-emerald-500 transition-colors" />
+            {/* Fila de Widgets Secundarios: Viajes y Noticias */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Carta de Viajes y Logística (NUEVA) */}
+              <div className="podio-card group p-5">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-7 h-7 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                      <Truck className="w-4 h-4 text-emerald-500" />
+                    </div>
+                    <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Itinerario y Fatiga de Viaje</h2>
                   </div>
-                  <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 italic">Noticias en Vivo y Feed de Lesiones</h2>
+                  <PlaneTakeoff className="w-3.5 h-3.5 text-gray-600" />
+                </div>
+
+                <div className="space-y-4">
+                  <TravelItem player="L. Musetti" route="Cagliari → Roma" time="4h Vuelo" fatigue="Baja" status="checked" />
+                  <TravelItem player="N. Djokovic" route="Belgrado → Roma" time="2h Vuelo" fatigue="Mínima" status="checked" />
+                  <TravelItem player="C. Alcaraz" route="Madrid → Roma" time="2.5h Vuelo" fatigue="Mínima" status="checked" />
+                </div>
+
+                <div className="mt-5 p-3 rounded-xl bg-orange-500/5 border border-orange-500/10 flex items-center gap-3">
+                  <Clock className="w-4 h-4 text-orange-500 shrink-0" />
+                  <p className="text-[10px] text-orange-200/60 font-medium leading-tight">
+                    Alerta de Jet Lag: Musetti llegó hace menos de 12h. Posible impacto en primer set.
+                  </p>
                 </div>
               </div>
 
-              <div className="flex flex-col lg:flex-row p-6 gap-8">
-                <div className="flex-1 space-y-6">
-                  <NewsItem
-                    status="warning"
-                    text="Musetti habría sufrido una lesión menor en la muñeca; llegando a Roma tras un vuelo largo."
-                    time="22 mins atrás"
-                  />
-                  <NewsItem
-                    status="active"
-                    text="Alcaraz confirma participación en Madrid; el modelo AI aumenta su edge en un +2.4%."
-                    time="1 hora atrás"
-                  />
-                  <NewsItem
-                    status="update"
-                    text="Nuevos datos climáticos descargados para la jornada de tarde; humedad +15%."
-                    time="3 horas atrás"
-                  />
-                </div>
-
-                {/* Mini Mapa / Visualización lateral (Hidden on small mobile) */}
-                <div className="hidden sm:flex w-full lg:w-72 h-48 bg-black/40 rounded-2xl border border-white/5 p-4 flex-col items-center justify-center text-center relative overflow-hidden group/map">
-                  <div className="absolute inset-0 bg-emerald-500/[0.05] mix-blend-overlay" />
-                  <MapIcon className="w-12 h-12 text-gray-800 mb-2 group-hover/map:text-emerald-900 transition-colors" />
-                  <p className="text-[9px] font-black text-gray-700 uppercase tracking-widest">Visualización Geográfica de Datos</p>
-                  <div className="mt-4 flex flex-col items-center">
-                    <div className="text-[10px] font-black text-gray-500 uppercase tracking-tighter">Roma, IT</div>
-                    <div className="w-1 h-8 bg-gradient-to-t from-emerald-500 via-emerald-500/20 to-transparent mt-2 shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
+              {/* Live Feed & News (Optimizada) */}
+              <div className="podio-card group p-5 flex flex-col">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-7 h-7 rounded-lg bg-white/5 flex items-center justify-center">
+                    <Megaphone className="w-4 h-4 text-gray-400 group-hover:text-emerald-500" />
                   </div>
-                  {/* Dotted lines over map */}
-                  <div className="absolute inset-0 opacity-10 pointer-events-none"
-                    style={{ backgroundImage: "radial-gradient(circle, #10b981 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
+                  <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 italic">Feed de Noticias AI</h2>
                 </div>
-              </div>
 
-              <div className="p-4 bg-white/[0.01] border-t border-white/5 flex justify-center">
-                <button className="text-[9px] font-black uppercase text-gray-600 hover:text-white transition-colors tracking-widest flex items-center gap-2">
-                  Ver Registro Completo <ChevronRight className="w-3 h-3" />
+                <div className="space-y-4 flex-1">
+                  <NewsItem status="warning" text="Musetti: Molestia leve en muñeca reportada." time="22m" />
+                  <NewsItem status="active" text="Alcaraz confirma participación en Madrid." time="1h" />
+                  <NewsItem status="update" text="Datos climáticos actualizados para Roma." time="3h" />
+                </div>
+
+                <button className="mt-4 text-[8px] font-black uppercase text-gray-600 hover:text-white transition-colors tracking-widest flex items-center gap-2 mx-auto">
+                  Ver más <ChevronRight className="w-3 h-3" />
                 </button>
               </div>
-            </motion.div>
+            </div>
+
+            {/* Tabla de Señales */}
+            <div className="min-w-0">
+              <SignalsTable />
+            </div>
           </div>
 
-          {/* Panel de Análisis Lateral - Stack on Mobile, Aside on Desktop */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="w-full xl:w-[400px] shrink-0"
-          >
+          {/* Panel de Análisis Lateral */}
+          <div className="w-full xl:w-[360px] shrink-0">
             <AnalysisPanel />
-          </motion.div>
+          </div>
 
         </div>
       </div>
 
-      {/* Background Ambience */}
+      {/* Background Ambience (Simplificado) */}
       <div className="fixed inset-0 pointer-events-none -z-10 bg-[#050505]" />
-      <div className="fixed inset-0 pointer-events-none opacity-20 overflow-hidden -z-10">
-        <motion.div
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.1, 0.3, 0.1]
-          }}
-          transition={{ duration: 15, repeat: Infinity }}
-          className="absolute -top-[10%] -left-[10%] w-[60%] h-[60%] bg-emerald-500/20 blur-[180px] rounded-full"
-        />
+      <div className="fixed inset-0 pointer-events-none opacity-10 -z-10 overflow-hidden">
+        <div className="absolute top-0 left-0 w-[50%] h-[50%] bg-emerald-500/10 blur-[150px] rounded-full" />
       </div>
 
       <style jsx global>{`
         :root {
-          --sidebar-width: 256px;
+          --sidebar-width: 240px;
         }
         @media (max-width: 1280px) {
-          :root { --sidebar-width: 80px; }
+          :root { --sidebar-width: 70px; }
         }
         @media (max-width: 1279px) {
           :root { --sidebar-width: 0px; }
           .xl\:ml-\[var\(--sidebar-width\)\] { margin-left: 0; }
+        }
+        body {
+          font-size: 13px;
         }
       `}</style>
     </main>
   )
 }
 
-function NewsItem({ status, text, time }: { status: "warning" | "active" | "update", text: string, time: string }) {
-  const statusColors = {
-    warning: "bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.5)]",
-    active: "bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,1)]",
-    update: "bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]"
-  }
-
+function TravelItem({ player, route, time, fatigue, status }: any) {
   return (
-    <div className="flex items-start gap-5 group cursor-default">
-      <div className={`w-2.5 h-2.5 rounded-full mt-1.5 shrink-0 transition-transform group-hover:scale-125 ${statusColors[status]}`} />
-      <div className="space-y-1">
-        <p className="text-xs xl:text-sm text-gray-400 font-bold tracking-tight leading-relaxed group-hover:text-gray-300 transition-colors uppercase">
-          {text}
-        </p>
-        <div className="flex items-center gap-2">
-          <span className="text-[9px] font-black text-gray-600 uppercase tracking-widest">{time}</span>
-          <div className="w-1 h-1 rounded-full bg-white/5" />
-          <span className="text-[9px] font-black text-emerald-500/50 uppercase tracking-widest italic">Verificado AI</span>
+    <div className="flex items-center justify-between group/item">
+      <div className="flex items-center gap-3">
+        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/40" />
+        <div className="flex flex-col">
+          <span className="text-[10px] font-black text-white uppercase tracking-tight">{player}</span>
+          <span className="text-[9px] font-bold text-gray-600 uppercase tracking-widest">{route}</span>
         </div>
+      </div>
+      <div className="flex items-center gap-4">
+        <div className="text-right">
+          <p className="text-[9px] font-black text-gray-400 group-hover/item:text-white transition-colors uppercase">{time}</p>
+          <p className="text-[8px] font-bold text-emerald-500/60 uppercase">Fatiga: {fatigue}</p>
+        </div>
+        <div className="w-5 h-5 rounded-lg border border-white/5 flex items-center justify-center bg-white/[0.02]">
+          <ChevronRight size={10} className="text-gray-700" />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function NewsItem({ status, text, time }: any) {
+  const statusColors = {
+    warning: "bg-amber-500",
+    active: "bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]",
+    update: "bg-blue-500"
+  }
+  return (
+    <div className="flex items-start gap-4">
+      <div className={cn("w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 transition-transform", statusColors[status as keyof typeof statusColors])} />
+      <div className="space-y-0.5">
+        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-tight leading-snug">{text}</p>
+        <span className="text-[8px] font-black text-gray-600 uppercase tracking-widest">{time}</span>
       </div>
     </div>
   )

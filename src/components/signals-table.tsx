@@ -1,7 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { MoreHorizontal, Search, Trophy, User, ChevronRight, LayoutGrid, Filter, ChevronDown } from "lucide-react"
+import { Trophy, User, ChevronRight, LayoutGrid, Filter, ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const signals = [
@@ -16,87 +15,69 @@ const signals = [
 
 export function SignalsTable() {
     return (
-        <div className="podio-card flex-1 min-h-[600px] flex flex-col">
-            <div className="p-6 border-b border-white/5 flex items-center justify-between bg-white/[0.01]">
-                <div className="flex items-center gap-8">
-                    <h2 className="text-sm font-black uppercase tracking-[0.2em] text-white">Señales Activas High Edge</h2>
-                    <div className="flex items-center gap-1 bg-black/40 p-1.5 rounded-xl border border-white/5 shadow-inner">
-                        <button className="px-5 py-1.5 text-[10px] font-black uppercase bg-emerald-500 text-black rounded-lg shadow-[0_0_15px_rgba(16,185,129,0.5)] transition-all">Tenis</button>
-                        <button className="px-5 py-1.5 text-[10px] font-black uppercase text-gray-500 hover:text-gray-300 transition-colors">Baloncesto</button>
-                        <button className="px-5 py-1.5 text-[10px] font-black uppercase text-gray-500 hover:text-gray-300 transition-colors flex items-center gap-2">
-                            Fútbol <ChevronRight className="w-3 h-3" />
-                        </button>
+        <div className="podio-card flex-1 min-h-[500px] flex flex-col">
+            <div className="p-4 border-b border-white/5 flex items-center justify-between bg-white/[0.01]">
+                <div className="flex items-center gap-6">
+                    <h2 className="text-xs font-black uppercase tracking-[0.2em] text-white">Señales High Edge</h2>
+                    <div className="flex items-center gap-1 bg-black/40 p-1 rounded-lg border border-white/5">
+                        <button className="px-3 py-1 text-[9px] font-black uppercase bg-emerald-500 text-black rounded shadow-[0_0_10px_rgba(16,185,129,0.3)] transition-all">Tenis</button>
+                        <button className="px-3 py-1 text-[9px] font-black uppercase text-gray-600 hover:text-gray-400">Basket</button>
+                        <button className="px-3 py-1 text-[9px] font-black uppercase text-gray-600 hover:text-gray-400">Fútbol</button>
                     </div>
                 </div>
 
-                <div className="flex items-center gap-3">
-                    <div className="flex items-center bg-white/5 px-3 py-1.5 rounded-lg border border-white/5 text-[10px] font-bold text-gray-500 uppercase tracking-widest gap-2">
+                <div className="flex items-center gap-2.5">
+                    <div className="flex items-center bg-white/5 px-2.5 py-1 rounded border border-white/5 text-[9px] font-bold text-gray-600 uppercase tracking-widest gap-2">
                         <span>Score</span>
-                        <div className="flex items-center gap-1 text-white">
-                            Retiros <ChevronDown className="w-3 h-3" />
-                        </div>
+                        <ChevronDown className="w-3 h-3 text-gray-700" />
                     </div>
-                    <div className="p-2 rounded-lg bg-white/5 border border-white/5 cursor-pointer text-gray-500 hover:text-emerald-500 hover:border-emerald-500/30 transition-all">
-                        <Filter className="w-4 h-4" />
-                    </div>
-                    <div className="p-2 rounded-lg bg-white/5 border border-white/5 cursor-pointer text-gray-500 hover:text-white transition-colors">
-                        <LayoutGrid className="w-4 h-4" />
+                    <div className="p-1.5 rounded bg-white/5 border border-white/5 text-gray-700">
+                        <Filter className="w-3.5 h-3.5" />
                     </div>
                 </div>
             </div>
 
             <div className="overflow-x-auto">
-                <table className="w-full text-left">
+                <table className="w-full text-left text-[11px]">
                     <thead>
-                        <tr className="text-[10px] uppercase tracking-widest text-gray-600 border-b border-white/5 bg-white/[0.01]">
-                            <th className="px-8 py-5 font-black">Partido</th>
-                            <th className="px-8 py-5 font-black">Liga</th>
-                            <th className="px-8 py-5 font-black">Cuota</th>
-                            <th className="px-8 py-5 font-black">Stake</th>
-                            <th className="px-8 py-5 font-black text-center">Prob. Victoria AI</th>
-                            <th className="px-8 py-5 font-black text-right">Acción</th>
+                        <tr className="uppercase tracking-widest text-gray-700 border-b border-white/5 bg-white/[0.01]">
+                            <th className="px-6 py-4 font-black">Partido</th>
+                            <th className="px-6 py-4 font-black">Liga</th>
+                            <th className="px-6 py-4 font-black">Cuota</th>
+                            <th className="px-6 py-4 font-black">Stake</th>
+                            <th className="px-6 py-4 font-black text-center">Prob (%)</th>
+                            <th className="px-6 py-4 font-black text-right">Acción</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-white/5">
                         {signals.map((signal, idx) => (
-                            <motion.tr
+                            <tr
                                 key={signal.match}
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: idx * 0.05, duration: 0.5 }}
                                 className={cn(
-                                    "hover:bg-white/[0.04] transition-all duration-300 group cursor-pointer relative",
-                                    signal.active && "bg-emerald-500/[0.12] z-10 scale-[1.01] shadow-[0_0_30px_rgba(16,185,129,0.15)] ring-1 ring-emerald-500/30"
+                                    "hover:bg-white/[0.03] transition-colors group cursor-pointer",
+                                    signal.active && "bg-emerald-500/[0.05] border-l-2 border-emerald-500"
                                 )}
                             >
-                                <td className="px-8 py-6">
-                                    <div className="flex items-center gap-5">
-                                        <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center bg-emerald-900/20 relative overflow-hidden group-hover:border-emerald-500/30 transition-colors shadow-lg">
-                                            <User className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-500 transition-colors" />
-                                            {signal.active && (
-                                                <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/20 to-transparent" />
-                                            )}
+                                <td className="px-6 py-4">
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-9 h-9 rounded-full border border-white/5 flex items-center justify-center bg-emerald-950/20 group-hover:border-emerald-500/30 transition-colors">
+                                            <User className="w-6 h-6 text-emerald-500/40 group-hover:text-emerald-500" />
                                         </div>
                                         <div>
-                                            <p className="text-sm xl:text-base font-black text-white group-hover:text-emerald-400 transition-colors tracking-tight italic uppercase">{signal.match}</p>
-                                            <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">{signal.date}</p>
+                                            <p className="text-xs font-black text-white group-hover:text-emerald-400 italic uppercase tracking-tight">{signal.match}</p>
+                                            <p className="text-[9px] text-gray-600 font-bold uppercase">{signal.date}</p>
                                         </div>
                                     </div>
                                 </td>
-                                <td className="px-8 py-6">
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-5 h-5 rounded bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
-                                            <Trophy className="w-3 h-3 text-emerald-500" />
-                                        </div>
-                                        <span className="text-[11px] font-bold text-gray-300 uppercase tracking-tighter">{signal.tour}</span>
-                                    </div>
+                                <td className="px-6 py-4">
+                                    <span className="text-[10px] font-bold text-gray-500 uppercase">{signal.tour}</span>
                                 </td>
-                                <td className="px-8 py-6 text-sm font-black text-emerald-400 font-mono tracking-tighter">{signal.odds}</td>
-                                <td className="px-8 py-6 text-sm font-black text-gray-300 font-mono italic tracking-tighter">{signal.stake}</td>
-                                <td className="px-8 py-6">
-                                    <div className="flex flex-col items-center gap-3">
-                                        <span className="text-2xl font-black text-white italic group-hover:text-emerald-400 transition-colors">{signal.prob}</span>
-                                        <div className="flex gap-1">
+                                <td className="px-6 py-4 text-xs font-black text-emerald-400 font-mono italic">{signal.odds}</td>
+                                <td className="px-6 py-4 text-xs font-black text-gray-400 font-mono italic">{signal.stake}</td>
+                                <td className="px-6 py-4">
+                                    <div className="flex flex-col items-center gap-2">
+                                        <span className="text-lg font-black text-white italic group-hover:text-emerald-400">{signal.prob}</span>
+                                        <div className="flex gap-0.5">
                                             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => {
                                                 const probVal = parseInt(signal.prob);
                                                 const isActive = i <= (probVal / 10);
@@ -104,8 +85,8 @@ export function SignalsTable() {
                                                     <div
                                                         key={i}
                                                         className={cn(
-                                                            "prob-segment",
-                                                            isActive ? "active" : "inactive"
+                                                            "w-2 h-1 rounded-[1px] transition-all duration-300",
+                                                            isActive ? "bg-emerald-500 shadow-[0_0_5px_rgba(16,185,129,0.5)]" : "bg-white/[0.05]"
                                                         )}
                                                     />
                                                 )
@@ -113,31 +94,25 @@ export function SignalsTable() {
                                         </div>
                                     </div>
                                 </td>
-                                <td className="px-8 py-6 text-right">
-                                    <motion.button
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        className="px-6 py-2 rounded-xl border border-white/10 text-[10px] font-black uppercase text-gray-400 group-hover:text-white group-hover:border-emerald-500/50 group-hover:bg-emerald-500/10 transition-all shadow-lg shadow-black/50"
+                                <td className="px-6 py-4 text-right">
+                                    <button
+                                        className="px-4 py-1.5 rounded-lg border border-white/10 text-[9px] font-black uppercase text-gray-600 group-hover:text-white group-hover:bg-emerald-500 transition-all"
                                     >
                                         Detalles
-                                    </motion.button>
+                                    </button>
                                 </td>
-                                {signal.active && <div className="scan-line h-px bg-emerald-500/20 top-0 opacity-50" />}
-                            </motion.tr>
+                            </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
 
-            <div className="p-6 border-t border-white/5 bg-white/[0.01] flex items-center justify-between mt-auto">
-                <span className="text-[10px] font-bold text-gray-600 uppercase tracking-[0.2em]">Desplegando 7 de 23 señales</span>
-                <div className="flex items-center gap-2">
+            <div className="p-4 border-t border-white/5 bg-white/[0.01] flex items-center justify-between mt-auto">
+                <span className="text-[9px] font-bold text-gray-700 uppercase tracking-widest">7 de 23 señales</span>
+                <div className="flex items-center gap-1.5">
                     <PaginationButton label="1" active />
                     <PaginationButton label="2" />
                     <PaginationButton label="3" />
-                    <PaginationButton label="4" />
-                    <PaginationButton label="5" />
-                    <div className="text-gray-600 px-2 tracking-widest">...</div>
                     <PaginationButton icon={<ChevronRight className="w-3 h-3" />} />
                 </div>
             </div>
@@ -145,11 +120,11 @@ export function SignalsTable() {
     )
 }
 
-function PaginationButton({ label, active, icon }: { label?: string, active?: boolean, icon?: any }) {
+function PaginationButton({ label, active, icon }: any) {
     return (
         <button className={cn(
-            "w-8 h-8 rounded-lg border flex items-center justify-center text-[10px] font-black transition-all",
-            active ? "bg-emerald-500 border-emerald-500 text-black shadow-lg shadow-emerald-500/20" : "bg-white/5 border-white/5 text-gray-500 hover:text-white hover:border-white/10"
+            "w-7 h-7 rounded border flex items-center justify-center text-[9px] font-black transition-all",
+            active ? "bg-emerald-500 border-emerald-500 text-black" : "bg-white/5 border-white/5 text-gray-600 hover:text-white"
         )}>
             {label || icon}
         </button>

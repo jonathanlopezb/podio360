@@ -17,7 +17,8 @@ import {
     Monitor,
     Menu,
     X,
-    Circle
+    Circle,
+    Truck
 } from "lucide-react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
@@ -28,6 +29,7 @@ const sidebarLinks = [
     { icon: Dribbble, label: "Baloncesto", href: "/baloncesto" },
     { icon: Gamepad2, label: "Fútbol", href: "/futbol" },
     { icon: BarChart3, label: "Estadísticas", href: "/stats" },
+    { icon: Truck, label: "Viajes/Logística", href: "/viajes" },
     { icon: User, label: "Perfil", href: "/profil" },
 ]
 
@@ -60,29 +62,27 @@ export function Sidebar() {
             <motion.aside
                 initial={false}
                 animate={{
-                    width: isCollapsed ? 80 : 256,
-                    x: isMobileMenuOpen ? 0 : (typeof window !== 'undefined' && window.innerWidth < 1280 ? -256 : 0)
+                    width: isCollapsed ? 70 : 240,
+                    x: isMobileMenuOpen ? 0 : (typeof window !== 'undefined' && window.innerWidth < 1280 ? -240 : 0)
                 }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                transition={{ type: "tween", duration: 0.3 }}
                 className={cn(
-                    "h-screen bg-[#050505] border-r border-white/5 flex flex-col fixed left-0 top-0 z-50 py-8 overflow-hidden",
-                    isMobileMenuOpen && "translate-x-0 !w-64"
+                    "h-screen bg-[#050505] border-r border-white/5 flex flex-col fixed left-0 top-0 z-50 py-6 overflow-hidden",
+                    isMobileMenuOpen && "translate-x-0 !w-60"
                 )}
             >
-                {/* Toggle Button (Desktop) */}
+                {/* Improved Toggle Button */}
                 <button
                     onClick={() => setIsCollapsed(!isCollapsed)}
-                    className="absolute -right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-6 h-12 bg-emerald-500 rounded-l-md flex items-center justify-center text-black z-50 xl:flex hidden hover:scale-105 transition-transform"
+                    className="absolute -right-3 top-20 w-6 h-6 bg-[#111] border border-white/10 rounded-full flex items-center justify-center text-emerald-500 z-50 xl:flex hidden hover:bg-emerald-500 hover:text-black transition-all shadow-xl"
                 >
-                    {isCollapsed ? <ChevronRight size={14} /> : <ChevronLeft size={14} />}
+                    {isCollapsed ? <ChevronRight size={12} /> : <ChevronLeft size={12} />}
                 </button>
 
-                {/* Logo Area - Refined Tennis Ball */}
-                <div className={cn("px-6 mb-12 flex items-center gap-3 transition-all", isCollapsed ? "justify-center px-0" : "")}>
-                    <div className="w-10 h-10 shrink-0 bg-emerald-500 rounded-full flex items-center justify-center border-2 border-white/20 relative shadow-[0_0_20px_rgba(16,185,129,0.5)] overflow-hidden group">
-                        <div className="absolute inset-0 border-[3px] border-white/10 rounded-full scale-90 translate-x-3 translate-y-3" />
-                        <div className="absolute inset-0 border-[3px] border-white/10 rounded-full scale-90 -translate-x-3 -translate-y-3" />
-                        <Circle className="text-black/80 w-6 h-6 fill-black/10" />
+                {/* Logo Area */}
+                <div className={cn("px-5 mb-10 flex items-center gap-2.5 transition-all text-xs", isCollapsed ? "justify-center px-0" : "")}>
+                    <div className="w-9 h-9 shrink-0 bg-emerald-500 rounded-full flex items-center justify-center border border-white/10 relative shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+                        <Trophy className="text-black w-5 h-5" />
                     </div>
                     {!isCollapsed && (
                         <motion.div
@@ -90,45 +90,41 @@ export function Sidebar() {
                             animate={{ opacity: 1 }}
                             className="flex flex-col"
                         >
-                            <span className="text-xl font-black tracking-tighter text-white uppercase leading-none">
+                            <span className="text-lg font-black tracking-tighter text-white uppercase leading-none">
                                 Podio <span className="text-emerald-500">360</span>
                             </span>
-                            <span className="text-[8px] font-bold text-gray-500 uppercase tracking-[0.2em]">SaaS Premium</span>
+                            <span className="text-[7px] font-bold text-gray-500 uppercase tracking-[0.2em]">SaaS Premium</span>
                         </motion.div>
                     )}
                 </div>
 
                 {/* Navigation */}
-                <nav className="flex-1 px-3 space-y-2">
+                <nav className="flex-1 px-2.5 space-y-1.5">
                     {sidebarLinks.map((link) => {
                         const isActive = link.label === "Tenis"
                         return (
                             <Link key={link.label} href={link.href}>
                                 <motion.div
-                                    whileHover={{ x: isCollapsed ? 0 : 4 }}
                                     className={cn(
-                                        "group flex items-center px-4 py-3 rounded-xl transition-all duration-300 relative",
+                                        "group flex items-center px-3 py-2.5 rounded-xl transition-all duration-200 relative",
                                         isActive ? "bg-emerald-500/10 text-white" : "text-gray-500 hover:text-white",
                                         isCollapsed ? "justify-center px-2" : "justify-between"
                                     )}
                                 >
-                                    <div className="flex items-center gap-4">
+                                    <div className="flex items-center gap-3">
                                         <link.icon className={cn(
-                                            "w-5 h-5 transition-colors shrink-0",
-                                            isActive ? "text-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]" : "group-hover:text-emerald-400"
+                                            "w-4.5 h-4.5 transition-colors shrink-0",
+                                            isActive ? "text-emerald-500" : "group-hover:text-emerald-400"
                                         )} />
                                         {!isCollapsed && (
-                                            <span className="text-sm font-bold tracking-tight whitespace-nowrap">{link.label}</span>
+                                            <span className="text-xs font-bold tracking-tight whitespace-nowrap">{link.label}</span>
                                         )}
                                     </div>
                                     {!isCollapsed && isActive && (
-                                        <motion.div
-                                            layoutId="activeIndicator"
-                                            className="w-1.5 h-1.5 rounded-full bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.8)]"
-                                        />
+                                        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.6)]" />
                                     )}
                                     {isActive && (
-                                        <div className="absolute left-0 w-0.5 h-6 bg-emerald-500 rounded-full" />
+                                        <div className="absolute left-0 w-0.5 h-5 bg-emerald-500 rounded-full" />
                                     )}
                                 </motion.div>
                             </Link>
@@ -137,40 +133,32 @@ export function Sidebar() {
                 </nav>
 
                 {/* Control Panel Footer */}
-                <div className={cn("px-4 space-y-4 pt-8 border-t border-white/5 transition-all", isCollapsed ? "items-center" : "")}>
+                <div className={cn("px-3 space-y-3 pt-6 border-t border-white/5 transition-all text-[9px]", isCollapsed ? "items-center" : "")}>
                     {!isCollapsed ? (
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            className="space-y-3"
-                        >
-                            <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-widest text-gray-500 px-2">
-                                <span>Configuración UI</span>
-                                <Settings className="w-3 h-3" />
+                        <div className="space-y-2.5">
+                            <div className="flex items-center justify-between font-bold uppercase tracking-widest text-gray-600 px-1">
+                                <span>UI Config</span>
+                                <Settings className="w-2.5 h-2.5" />
                             </div>
 
-                            <ControlToggle label="Descender al aspecto" icon={Monitor} defaultChecked />
-                            <ControlToggle label="LED Soporte" icon={ShieldCheck} />
+                            <ControlToggle label="Aspecto" icon={Monitor} defaultChecked />
                             <ControlToggle label="LED Signos" icon={Zap} defaultChecked />
-                        </motion.div>
+                        </div>
                     ) : (
-                        <div className="flex flex-col items-center gap-4 text-gray-500">
-                            <Settings className="w-4 h-4 hover:text-white transition-colors cursor-pointer" />
-                            <Zap className="w-4 h-4 text-emerald-500 cursor-pointer" />
+                        <div className="flex flex-col items-center gap-3 text-gray-600">
+                            <Settings className="w-3.5 h-3.5 hover:text-white transition-colors cursor-pointer" />
+                            <Zap className="w-3.5 h-3.5 text-emerald-500 cursor-pointer" />
                         </div>
                     )}
 
                     <div className={cn(
-                        "p-4 rounded-xl bg-white/5 border border-white/5 mt-4 group hover:bg-white/[0.08] transition-all cursor-pointer",
+                        "p-3 rounded-xl bg-white/5 border border-white/5 mt-3 group hover:bg-white/[0.08] transition-all cursor-pointer",
                         isCollapsed ? "p-2 aspect-square flex items-center justify-center" : ""
                     )}>
-                        <div className="flex items-center gap-3">
-                            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,1)] shrink-0" />
+                        <div className="flex items-center gap-2.5">
+                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_5px_rgba(16,185,129,1)] shrink-0" />
                             {!isCollapsed && (
-                                <>
-                                    <span className="text-[10px] font-black text-white uppercase tracking-tighter">Señales en Vivo</span>
-                                    <ChevronRight className="w-3 h-3 ml-auto text-gray-600 group-hover:text-emerald-500 transition-colors" />
-                                </>
+                                <span className="text-[9px] font-black text-white uppercase tracking-tighter">Live Feed</span>
                             )}
                         </div>
                     </div>
@@ -198,23 +186,20 @@ function ControlToggle({ label, icon: Icon, defaultChecked = false }: { label: s
     return (
         <div
             onClick={() => setChecked(!checked)}
-            className="flex items-center justify-between group cursor-pointer px-2"
+            className="flex items-center justify-between group cursor-pointer px-1"
         >
-            <div className="flex items-center gap-2">
-                <Icon className={cn("w-3.5 h-3.5 transition-colors", checked ? "text-emerald-500" : "text-gray-500 group-hover:text-gray-300")} />
-                <span className="text-[10px] font-semibold text-gray-500 group-hover:text-gray-300">{label}</span>
+            <div className="flex items-center gap-1.5">
+                <Icon className={cn("w-3 h-3 transition-colors", checked ? "text-emerald-500" : "text-gray-600 group-hover:text-gray-400")} />
+                <span className="font-semibold text-gray-600 group-hover:text-gray-400">{label}</span>
             </div>
             <div className={cn(
-                "w-6 h-3 rounded-full relative transition-colors border",
-                checked ? "bg-emerald-500/20 border-emerald-500/50" : "bg-white/5 border-white/10"
+                "w-5 h-2.5 rounded-full relative transition-colors border",
+                checked ? "bg-emerald-500/20 border-emerald-500/40" : "bg-white/5 border-white/10"
             )}>
-                <motion.div
-                    animate={{ x: checked ? 12 : 0 }}
-                    className={cn(
-                        "absolute top-0.5 left-0.5 w-1.5 h-1.5 rounded-full",
-                        checked ? "bg-emerald-500 shadow-[0_0_5px_rgba(16,185,129,0.8)]" : "bg-gray-600"
-                    )}
-                />
+                <div className={cn(
+                    "absolute top-px left-px w-1.5 h-1.5 rounded-full transition-all",
+                    checked ? "translate-x-2 bg-emerald-500 shadow-[0_0_4px_rgba(16,185,129,0.8)]" : "translate-x-0 bg-gray-600"
+                )} />
             </div>
         </div>
     )
