@@ -122,7 +122,7 @@ export function AnalysisPanel() {
 
 function InsightItem({ label, value, status, icon }: { label: string, value: string, status: "positive" | "warning", icon: any }) {
     const colors = {
-        positive: "bg-emerald-500/5 border-emerald-500/10 text-emerald-400 shadow-[shadow_0_0_10px_rgba(16,185,129,0.05)]",
+        positive: "bg-emerald-500/5 border-emerald-500/10 text-emerald-400 shadow-[0_0_10px_rgba(16,185,129,0.05)]",
         warning: "bg-amber-500/5 border-amber-500/10 text-amber-400"
     }
 
