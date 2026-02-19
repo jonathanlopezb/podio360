@@ -1,163 +1,160 @@
 "use client"
 
-import { TrendingUp, User, AlertTriangle, Trophy, Info, MapPin, MoreHorizontal, Zap, BarChart3, Database } from "lucide-react"
+import { TrendingUp, User, AlertTriangle, Trophy, Info, MapPin, MoreHorizontal, Database, Activity, Target, Zap } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, BarChart, Bar } from 'recharts'
+
+const radarData = [
+    { subject: 'Potencia', A: 120, B: 110, fullMark: 150 },
+    { subject: 'Resistencia', A: 98, B: 130, fullMark: 150 },
+    { subject: 'Backhand', A: 86, B: 130, fullMark: 150 },
+    { subject: 'Forehand', A: 99, B: 100, fullMark: 150 },
+    { subject: 'Saque', A: 85, B: 90, fullMark: 150 },
+    { subject: 'Retorno', A: 65, B: 85, fullMark: 150 },
+];
+
+const equityData = [
+    { name: 'Ene', value: 400 },
+    { name: 'Feb', value: 300 },
+    { name: 'Mar', value: 600 },
+    { name: 'Abr', value: 800 },
+    { name: 'May', value: 500 },
+    { name: 'Jun', value: 900 },
+    { name: 'Jul', value: 1200 },
+];
 
 export function AnalysisPanel() {
     return (
-        <div className="w-full flex flex-col gap-5 font-sans">
+        <div className="w-full flex flex-col gap-6 font-sans">
 
-            {/* AI Confidence Widget */}
-            <div className="podio-card p-5 border-emerald-500/10 bg-gradient-to-br from-emerald-500/[0.03] to-transparent">
-                <div className="flex items-center justify-between mb-3">
-                    <h1 className="text-[9px] font-black uppercase tracking-[0.2em] text-gray-500">Confianza AI</h1>
-                    <div className="flex items-center gap-1.5">
-                        <span className="text-[8px] font-bold text-emerald-500/80 uppercase">Live</span>
-                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,1)]" />
-                    </div>
-                </div>
-                <div className="flex items-baseline gap-2 mb-1">
-                    <span className="text-4xl font-black text-white tracking-tighter italic">+12.4%</span>
-                    <span className="text-[8px] font-black text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-1.5 py-0.5 rounded-sm border border-emerald-500/20">Market Edge</span>
-                </div>
-                <div className="flex items-center gap-2 mb-4">
-                    <p className="text-[9px] text-gray-600 font-bold uppercase">Precisión 30d — <span className="text-gray-300">78.6%</span></p>
-                    <Info className="w-3 h-3 text-gray-700" />
-                </div>
+            {/* AI Confidence Node - Futuristic 2026 */}
+            <div className="podio-card p-6 border-emerald-500/20 bg-[#080808] relative overflow-hidden group">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 blur-[60px] pointer-events-none" />
 
-                <div className="space-y-1.5">
-                    <div className="h-[2px] w-full bg-white/5 rounded-full overflow-hidden">
-                        <div
-                            className="h-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.8)]"
-                            style={{ width: "78.6%" }}
-                        />
-                    </div>
-                    <div className="flex justify-between text-[8px] font-black text-gray-700 uppercase tracking-widest">
-                        <span>Volatilidad: Baja</span>
-                        <span>Modelo: Omega-9</span>
-                    </div>
-                </div>
-            </div>
-
-            {/* Deep Match Analysis */}
-            <div className="podio-card">
-                <div className="p-4 border-b border-white/5 flex items-center justify-between bg-white/[0.01]">
-                    <h2 className="text-[9px] font-black uppercase tracking-[0.2em] text-gray-600 italic">Deep Match Analysis</h2>
-                    <MoreHorizontal className="w-3.5 h-3.5 text-gray-700" />
-                </div>
-
-                <div className="p-5 space-y-5">
-                    {/* Player Head-to-Head */}
-                    <div className="flex items-center justify-between gap-4">
-                        <div className="flex flex-col items-center gap-2">
-                            <div className="w-12 h-12 rounded-full border border-emerald-500/20 bg-emerald-500/5 flex items-center justify-center p-1">
-                                <User className="w-8 h-8 text-emerald-500/30" />
-                            </div>
-                            <span className="text-[9px] font-black text-white uppercase tracking-tighter">Djokovic</span>
-                        </div>
-                        <div className="flex flex-col items-center">
-                            <span className="text-[10px] font-black text-gray-700 uppercase italic">VS</span>
-                            <div className="w-px h-6 bg-white/5 my-1" />
-                        </div>
-                        <div className="flex flex-col items-center gap-2">
-                            <div className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center p-1">
-                                <User className="w-8 h-8 text-gray-500/30" />
-                            </div>
-                            <span className="text-[9px] font-black text-gray-300 uppercase tracking-tighter">Musetti</span>
-                        </div>
-                    </div>
-
-                    {/* Comparison Bars */}
-                    <div className="space-y-3">
-                        <ComparisonBar label="Potencia Servicio" val1={85} val2={65} />
-                        <ComparisonBar label="Defensa Linea" val1={92} val2={78} />
-                        <ComparisonBar label="Mentalidad Tie" val1={98} val2={45} />
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-3 pt-2">
-                        <InsightItem
-                            label="Forma Reciente"
-                            value="+24 ELO"
-                            status="positive"
-                            icon={<Trophy className="w-3.5 h-3.5 text-emerald-500" />}
-                        />
-                        <InsightItem
-                            label="Riesgo Físico"
-                            value="Moderado"
-                            status="warning"
-                            icon={<AlertTriangle className="w-3.5 h-3.5 text-amber-500" />}
-                        />
-                    </div>
-                </div>
-            </div>
-
-            {/* Model Insights - NEW SECTION */}
-            <div className="podio-card p-5 space-y-4">
-                <div className="flex items-center gap-3">
-                    <div className="w-7 h-7 rounded bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
-                        <Database className="w-4 h-4 text-emerald-500" />
-                    </div>
-                    <h2 className="text-[9px] font-black uppercase tracking-[0.2em] text-gray-500">Model Insights (Alpha)</h2>
-                </div>
-
-                <div className="space-y-3">
-                    <div className="flex justify-between items-center bg-white/[0.02] p-2 rounded-lg border border-white/5">
-                        <span className="text-[9px] font-bold text-gray-600 uppercase tracking-widest">Bias de Superficie</span>
-                        <span className="text-[10px] font-black text-emerald-500">+1.2% Clay</span>
-                    </div>
-                    <div className="flex justify-between items-center bg-white/[0.02] p-2 rounded-lg border border-white/5">
-                        <span className="text-[9px] font-bold text-gray-600 uppercase tracking-widest">Confianza H2H</span>
-                        <span className="text-[10px] font-black text-white">Alta (8/10)</span>
-                    </div>
-                    <div className="flex justify-between items-center bg-white/[0.02] p-2 rounded-lg border border-white/5">
-                        <span className="text-[9px] font-bold text-gray-600 uppercase tracking-widest">Probabilidad Break</span>
-                        <span className="text-[10px] font-black text-amber-500">64.2%</span>
-                    </div>
-                </div>
-            </div>
-
-            {/* Equity Curve */}
-            <div className="podio-card p-5 bg-gradient-to-b from-white/[0.02] to-transparent">
                 <div className="flex items-center justify-between mb-6">
-                    <div className="space-y-0.5">
-                        <h2 className="text-[9px] font-black uppercase tracking-[0.2em] text-gray-600 italic">Equity Curve & Drawdown</h2>
-                        <p className="text-[8px] font-bold text-gray-700 uppercase tracking-widest">Rendimiento Histórico del Modelo</p>
+                    <div className="flex items-center gap-3">
+                        <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+                            <Activity className="w-4 h-4 text-emerald-500" />
+                        </div>
+                        <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">Motor de Probabilidad v6.2</h2>
                     </div>
-                    <div className="text-right">
-                        <span className="text-sm font-black text-emerald-500 font-mono italic tracking-tighter">+ 2,420.50</span>
+                    <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,1)] animate-pulse" />
+                        <span className="text-[8px] font-black text-emerald-500 uppercase tracking-widest">Real-Time</span>
                     </div>
                 </div>
 
-                <div className="h-32 relative flex items-end gap-[1px]">
-                    {[30, 45, 38, 55, 48, 70, 62, 85, 78, 100, 92, 110, 105, 120].map((h, i) => (
-                        <div
-                            key={i}
-                            className="flex-1 bg-gradient-to-t from-emerald-500/5 to-emerald-500 transition-all duration-700 opacity-80 hover:opacity-100 hover:scale-y-105"
-                            style={{ height: `${h}%` }}
-                        />
-                    ))}
-                    {/* Shadow/Drawdown overlay */}
-                    <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-red-500/5 to-transparent opacity-20" />
+                <div className="flex items-end justify-between mb-8">
+                    <div className="space-y-1">
+                        <span className="text-5xl font-black text-white tracking-tighter italic">81.4<span className="text-emerald-500 text-3xl">%</span></span>
+                        <p className="text-[9px] font-bold text-gray-500 uppercase tracking-widest">Confianza del Algoritmo</p>
+                    </div>
+                    <div className="h-12 w-24">
+                        <ResponsiveContainer width="100%" height="100%">
+                            <AreaChart data={equityData.slice(-5)}>
+                                <Area type="monotone" dataKey="value" stroke="#10b981" fill="transparent" strokeWidth={2} />
+                            </AreaChart>
+                        </ResponsiveContainer>
+                    </div>
                 </div>
-                <div className="flex justify-between mt-3 text-[8px] font-black text-gray-700 uppercase tracking-widest">
-                    <span>Enero 2024</span>
-                    <span>Mayo 2024</span>
-                </div>
-            </div>
-        </div>
-    )
-}
 
-function ComparisonBar({ label, val1, val2 }: { label: string, val1: number, val2: number }) {
-    return (
-        <div className="space-y-1.5">
-            <div className="flex justify-between text-[8px] font-bold text-gray-600 uppercase tracking-[0.1em]">
-                <span>{label}</span>
-                <span className="text-gray-500">{val1}% vs {val2}%</span>
+                <div className="grid grid-cols-2 gap-4">
+                    <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5">
+                        <span className="text-[8px] font-black text-gray-600 uppercase tracking-widest block mb-1">Varianza Node</span>
+                        <span className="text-xs font-black text-white italic">± 2.4%</span>
+                    </div>
+                    <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5">
+                        <span className="text-[8px] font-black text-gray-600 uppercase tracking-widest block mb-1">Cluster IP</span>
+                        <span className="text-xs font-black text-emerald-500">Node-A24</span>
+                    </div>
+                </div>
             </div>
-            <div className="h-[3px] w-full bg-white/5 rounded-full flex overflow-hidden">
-                <div className="h-full bg-emerald-500" style={{ width: `${val1}%` }} />
-                <div className="h-full bg-white/10" style={{ width: `${val2}%` }} />
+
+            {/* Avant-Garde Radar Analysis */}
+            <div className="podio-card p-6 min-h-[400px]">
+                <div className="flex items-center justify-between mb-8 border-b border-white/5 pb-4">
+                    <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">Deep Profile Analysis</h2>
+                    <Zap className="w-4 h-4 text-emerald-500" />
+                </div>
+
+                <div className="h-[250px] w-full mb-8 flex justify-center items-center">
+                    <ResponsiveContainer width="100%" height="100%">
+                        <RadarChart cx="50%" cy="50%" outerRadius="80%" data={radarData}>
+                            <PolarGrid stroke="#ffffff10" />
+                            <PolarAngleAxis dataKey="subject" tick={{ fill: '#666', fontSize: 8, fontWeight: 900 }} />
+                            <Radar
+                                name="Djokovic"
+                                dataKey="A"
+                                stroke="#10b981"
+                                fill="#10b981"
+                                fillOpacity={0.5}
+                            />
+                            <Radar
+                                name="Musetti"
+                                dataKey="B"
+                                stroke="#ffffff30"
+                                fill="#ffffff10"
+                                fillOpacity={0.3}
+                            />
+                        </RadarChart>
+                    </ResponsiveContainer>
+                </div>
+
+                <div className="space-y-4">
+                    <div className="flex items-center justify-between text-[9px] font-black uppercase tracking-widest border-l-2 border-emerald-500 pl-3">
+                        <span className="text-gray-500">Inferencia de Victoria</span>
+                        <span className="text-emerald-500">Alta Probabilidad</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <div className="flex-1 p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/10 text-center">
+                            <span className="text-[8px] font-black text-emerald-500/60 uppercase block">Djokovic</span>
+                            <span className="text-xs font-black text-white">82% Perf</span>
+                        </div>
+                        <div className="flex-1 p-3 rounded-xl bg-white/5 border border-white/5 text-center">
+                            <span className="text-[8px] font-black text-gray-600 uppercase block">Musetti</span>
+                            <span className="text-xs font-black text-gray-400">64% Perf</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Equity Vanguard Curve */}
+            <div className="podio-card p-6">
+                <div className="flex items-center justify-between mb-8">
+                    <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
+                            <TrendingUp className="w-4 h-4 text-emerald-500" />
+                        </div>
+                        <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Rendimiento Alpha 2026</h2>
+                    </div>
+                    <span className="text-lg font-black text-emerald-500 font-mono italic">+21.4%</span>
+                </div>
+
+                <div className="h-40 w-full mb-4">
+                    <ResponsiveContainer width="100%" height="100%">
+                        <AreaChart data={equityData}>
+                            <defs>
+                                <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
+                                    <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
+                                </linearGradient>
+                            </defs>
+                            <Area type="stepAfter" dataKey="value" stroke="#10b981" fillOpacity={1} fill="url(#colorValue)" strokeWidth={2} />
+                        </AreaChart>
+                    </ResponsiveContainer>
+                </div>
+
+                <div className="flex justify-between items-center bg-white/[0.01] border border-white/5 rounded-xl p-4">
+                    <div className="flex flex-col">
+                        <span className="text-[8px] font-black text-gray-600 uppercase tracking-widest">Drawdown Máx</span>
+                        <span className="text-xs font-black text-white">-4.2%</span>
+                    </div>
+                    <div className="w-px h-6 bg-white/5" />
+                    <div className="flex flex-col text-right">
+                        <span className="text-[8px] font-black text-gray-600 uppercase tracking-widest">Sharpe Ratio</span>
+                        <span className="text-xs font-black text-emerald-500">2.84</span>
+                    </div>
+                </div>
             </div>
         </div>
     )

@@ -29,7 +29,7 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
                   <div className="w-1 h-6 bg-emerald-500 rounded-full" />
-                  <h1 className="text-xl lg:text-2xl font-black text-white uppercase tracking-tighter italic">Análisis Pro Tenis</h1>
+                  <h1 className="text-xl lg:text-2xl font-black text-white uppercase tracking-tighter italic">Quantum Analysis Node</h1>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[9px] font-black text-emerald-500 uppercase tracking-widest shadow-lg shadow-emerald-500/5">ATP Masters</div>
@@ -107,7 +107,7 @@ export default function Home() {
           <div className="flex items-center gap-6">
             <div className="flex flex-col">
               <span className="text-[10px] font-black text-white uppercase tracking-[0.2em]">Podio 360</span>
-              <span className="text-[8px] font-bold text-gray-600 uppercase tracking-widest mt-1">© 2024 Todos los derechos reservados.</span>
+              <span className="text-[8px] font-bold text-gray-600 uppercase tracking-widest mt-1">© 2026 Arquitectura de Datos Vanguardista.</span>
             </div>
           </div>
           <div className="flex items-center gap-2">
