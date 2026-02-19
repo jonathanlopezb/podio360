@@ -62,7 +62,8 @@
 }
 
 .podio-card {
-  @apply bg-[#0C0C0C]/60 backdrop-blur-3xl border border-white/10 rounded-2xl shadow-[0_20px_50px_rgba(0, 0, 0, 0.5)] relative overflow-hidden transition-all duration-500;
+  @apply bg-[#0C0C0C]/60 backdrop-blur-3xl border border-white/10 rounded-2xl relative overflow-hidden transition-all duration-500;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
 .podio-card::after {
@@ -116,7 +117,8 @@
 }
 
 .prob-segment.active {
-  @apply bg-emerald-500 shadow-[0_0_10px_rgba(16, 185, 129, 0.8)];
+  @apply bg-emerald-500;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
 }
 
 .prob-segment.inactive {
