@@ -1,6 +1,6 @@
 "use client"
 
-import { LogIn, ShieldKeyhole, ChevronDown, Trophy, Zap } from "lucide-react"
+import { LogIn, ShieldCheck, ChevronDown, Trophy, Zap } from "lucide-react"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
@@ -40,7 +40,7 @@ export function Topbar() {
                         className="group flex items-center gap-3 bg-white/[0.03] border border-white/10 hover:border-emerald-500/50 px-4 py-2.5 rounded-xl transition-all shadow-xl"
                     >
                         <div className="w-7 h-7 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-emerald-500/10 transition-colors">
-                            <ShieldKeyhole className="w-4 h-4 text-gray-400 group-hover:text-emerald-500" />
+                            <ShieldCheck className="w-4 h-4 text-gray-400 group-hover:text-emerald-500" />
                         </div>
                         <div className="flex flex-col items-start">
                             <span className="text-[10px] font-black text-white uppercase tracking-tighter leading-none">Iniciar Sesión</span>
