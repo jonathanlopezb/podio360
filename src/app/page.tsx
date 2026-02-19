@@ -100,8 +100,28 @@ export default function Home() {
           <div className="w-full xl:w-[360px] shrink-0">
             <AnalysisPanel />
           </div>
-
         </div>
+
+        {/* Pie de Página (Footer) */}
+        <footer className="mt-auto px-6 py-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 bg-white/[0.01]">
+          <div className="flex items-center gap-6">
+            <div className="flex flex-col">
+              <span className="text-[10px] font-black text-white uppercase tracking-[0.2em]">Podio 360</span>
+              <span className="text-[8px] font-bold text-gray-600 uppercase tracking-widest mt-1">© 2024 Todos los derechos reservados.</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-[9px] font-bold text-gray-500 uppercase tracking-widest">Desarrollado por</span>
+            <a
+              href="https://buildertech.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-1.5 rounded-lg bg-emerald-500/5 border border-emerald-500/20 text-[9px] font-black text-emerald-500 uppercase tracking-widest hover:bg-emerald-500 hover:text-black transition-all shadow-lg shadow-emerald-500/5"
+            >
+              buildertech.com - Jonathan L.
+            </a>
+          </div>
+        </footer>
       </div>
 
       {/* Background Ambience (Simplificado) */}
